@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="header">
+        <img src="pfp.png" alt="Profile Photo">
+        <div>
+            <h1>Hi, I'm Gabe </h1>
+            <h3>Computer Science @ University of Washington</h3>
+            <a href="https://www.linkedin.com/in/gabe-cheng-b053b3310/" target="_blank" class="icon-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="Gabes Resume.pdf" class="icon-link"><i class="fa-solid fa-file-lines"></i>  Resume</a>
+            <a href="https://github.com/gabecheng123" class="icon-link"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="mailto:gabrieltcheng@gmail.com" class="icon-link"><i class="fa-solid fa-envelope"></i>  Email</a>
+        </div>
+    </section>
+
+    <section class="about-me">
+        <div class="section-header">
+            <h1>About Me</h1>
+        </div>
+        <div class="content">
+            <p>
+                • Founding member of Fitness Tech @ UW <br>
+                • Member of Synap Tech & I2 @ UW <br>
+                • Rush Chair and Brotherhood Chair for DTD Fraternity @ UW <br>
+                • Volunteer for UW Special Olympics <br>
+                • Interested in AI/ML, SWE, and Biotech <br>
+                • Enjoy hiking, soccer, and jazz (currently saving up for a t-sax)
+            </p>
+        </div>
+    </section>
+
+    <section class="experience">
+        <div class="section-header">
+            <h1>Experience</h1>
+        </div>
+        <div class="module" onclick="toggleDescription(this)">
+            <div class="module-header">
+                <img src="Fit Tech Logo.jpeg" alt="Fitness Tech Logo">
+                <div class="module-info">
+                    <h1 class="group">Fitness Tech</h1>
+                    <h2 class="title">Software Team Lead</h2>
+                </div>
+                <div class="module-right">
+                    <h3 class="time">Jan 2026 - Present</h3>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+            <p class="description">blah blah blah</p>
+        </div>
+        <div class="module" onclick="toggleDescription(this)">
+            <div class="module-header">
+                <img src="I2 logo.jpg" alt="I2 Logo">
+                <div class="module-info">
+                    <h1 class="group">Interactive Intelligence</h1>
+                    <h2 class="title">Research Student</h2>
+                </div>
+                <div class="module-right">
+                    <h3 class="time">March 2026 - June 2026</h3>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+            <p class="description">blah blah blah</p>
+        </div>
+        <div class="module" onclick="toggleDescription(this)">
+            <div class="module-header">
+                <img src="dtd.png" alt="dtd">
+                <div class="module-info">
+                    <h1 class="group">Delta Tau Delta Fraternity</h1>
+                    <h2 class="title">Rush and Brotherhood Chair</h2>
+                </div>
+                <div class="module-right">
+                    <h3 class="time">Sept 2025 - Present</h3>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+            <p class="description">• Organize weekly/biweekly brotherhood events<br>• Coordinate the raising and spending of $1,500 for brotherhood<br>• Reached out to 100+ students interested in greek life<br>• Succesfully recruited 8 members (and counting)</p>
+        </div>
+        <div class="module" onclick="toggleDescription(this)">
+            <div class="module-header">
+                <img src="images.png" alt="chi mac logo">
+                <div class="module-info">
+                    <h1 class="group">Chi Mac</h1>
+                    <h2 class="title">Front of House Manager</h2>
+                </div>
+                <div class="module-right">
+                    <h3 class="time">June 2025 - Nov 2025</h3>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+            <p class="description">
+                • Trained new hires<br>• Managed up to 120 orders per hour <br>• Managed stock of 45+ items and communicated with suppliers
+            </p>
+        </div>
+    </section>
+    
+    <section class="education">
+        <div class="section-header">
+            <h1>Education</h1>
+        </div>
+        <div class="module" onclick="toggleDescription(this)">
+            <div class="module-header">
+                <img src="cropped-UW-logo-512.png" alt="uw logo">
+                <div class="module-info">
+                    <h1 class="group">University of Washington</h1>
+                    <h2 class="title">B.S. Computer Science</h2>
+                </div>
+                <div class="module-right">
+                    <h3 class="time">Sept 2025 - June 2029</h3>
+                    <span class="arrow">›</span>
+                </div>
+            </div>
+            <p class="description">GPA: 3.8<br>Relevant Coursework: Foundations of Computing, The Hardware and Software Interface, Software Design and Implementation, Data Structures and Algorithims</p>
+        </div>
+    </section>
+
+    <section class="projects">
+        <div class="section-header">
+            <h1>Projects</h1>
+        </div>
+        <div class="projects-grid">
+
+            <!-- PROJECT CARD TEMPLATE:
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="YOUR_IMAGE.png" alt="Project Name">
+                </div>
+                <div class="project-body">
+                    <div class="project-title-row">
+                        <h2 class="project-name">Project Name</h2>
+                        <span class="project-date">Month Year</span>
+                    </div>
+                    <p class="project-description">Your project description here.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Tech1</span>
+                        <span class="project-tag">Tech2</span>
+                    </div>
+                    <a href="YOUR_LINK" target="_blank" class="project-btn">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+                    </a>
+                </div>
+            </div>
+            -->
+
+            <div class="project-card">
+                <div class="project-image project-image--fitness">
+                    <i class="fa-solid fa-dumbbell project-icon"></i>
+                </div>
+                <div class="project-body">
+                    <div class="project-title-row">
+                        <h2 class="project-name">MyFitnessTech</h2>
+                        <span class="project-date">Jan 2026</span>
+                    </div>
+                    <p class="project-description">All-in-one iOS fitness companion that tracks workouts, logs nutrition and sleep, and connects to Bluetooth Low Energy wearables for real-time rep counting and health metric streaming.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Swift</span>
+                        <span class="project-tag">SwiftUI</span>
+                        <span class="project-tag">BLE</span>
+                        <span class="project-tag">Firebase</span>
+                    </div>
+                    <a href="https://apps.apple.com/app/myfitnesstech/id6759835790" target="_blank" class="project-btn">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="skills">
+        <div class="section-header">
+            <h1>Skills</h1>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Languages</h2>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Swift</span>
+                    <span class="skill-tag">x86-64 Assembly</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h2>Frameworks</h2>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Flutter</span>
+                    <span class="skill-tag">Firebase</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-wrench"></i>
+                    <h2>Developer Tools</h2>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">LaTeX</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Visual Studio</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Cursor</span>
+                    <span class="skill-tag">Claude Code</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fa-solid fa-brain"></i>
+                    <h2>Concepts</h2>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Object-Oriented Programming</span>
+                    <span class="skill-tag">Web Frameworks</span>
+                    <span class="skill-tag">Databases</span>
+                    <span class="skill-tag">Full Stack</span>
+                    <span class="skill-tag">Cloud Computing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="section-header">
+            <h1>Contact</h1>
+        </div>
+        <div class="contact-grid">
+            <a href="tel:4256389087" class="contact-card">
+                <div class="contact-card-header">
+                    <i class="fa-solid fa-phone"></i>
+                    <h2>Phone</h2>
+                </div>
+                <p class="contact-value">425-638-9087</p>
+            </a>
+            <a href="mailto:gabrieltcheng@gmail.com" class="contact-card">
+                <div class="contact-card-header">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h2>Email</h2>
+                </div>
+                <p class="contact-value">gabrieltcheng@gmail.com</p>
+            </a>
+            <a href="https://linkedin.com/in/gabecheng" target="_blank" class="contact-card">
+                <div class="contact-card-header">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <h2>LinkedIn</h2>
+                </div>
+                <p class="contact-value">linkedin.com/in/gabecheng</p>
+            </a>
+            <a href="https://github.com/gabecheng123" target="_blank" class="contact-card">
+                <div class="contact-card-header">
+                    <i class="fa-brands fa-github"></i>
+                    <h2>GitHub</h2>
+                </div>
+                <p class="contact-value">github.com/gabecheng123</p>
+            </a>
+            <a href="https://www.instagram.com/gabe_cheng123/" target="_blank" class="contact-card">
+                <div class="contact-card-header">
+                    <i class="fa-brands fa-instagram"></i>
+                    <h2>Instagram</h2>
+                </div>
+                <p class="contact-value">@gabe_cheng123</p>
+            </a>
+            <a href="https://open.spotify.com/user/312ipitjym6j2ehrlerfvi5efegm" target="_blank" class="contact-card">
+                <div class="contact-card-header">
+                    <i class="fa-brands fa-spotify"></i>
+                    <h2>Spotify</h2>
+                </div>
+                <p class="contact-value">Gabe's Spotify</p>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        function toggleDescription(module) {
+            const description = module.querySelector('.description');
+            const arrow = module.querySelector('.arrow');
+            
+            description.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
