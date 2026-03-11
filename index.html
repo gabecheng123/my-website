@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="header">
+    <nav class="taskbar">
+        <a href="#header" class="taskbar-link" title="Home"><i class="fa-solid fa-house"></i></a>
+        <a href="#experience" class="taskbar-link" title="Experience"><i class="fa-solid fa-briefcase"></i></a>
+        <a href="#education" class="taskbar-link" title="Education"><i class="fa-solid fa-graduation-cap"></i></a>
+        <a href="#projects" class="taskbar-link" title="Projects"><i class="fa-solid fa-folder-open"></i></a>
+        <a href="#skills" class="taskbar-link" title="Skills"><i class="fa-solid fa-code"></i></a>
+        <a href="#contact" class="taskbar-link" title="Contact"><i class="fa-solid fa-envelope"></i></a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle dark/light mode">
+            <span id="theme-icon"></span>
+        </button>
+    </nav>
+    <section id="header" class="header">
         <img src="pfp.png" alt="Profile Photo">
         <div>
             <h1>Hi, I'm Gabe </h1>
@@ -20,7 +31,7 @@
         </div>
     </section>
 
-    <section class="about-me">
+    <section id="about-me" class="about-me">
         <div class="section-header">
             <h1>About Me</h1>
         </div>
@@ -36,7 +47,7 @@
         </div>
     </section>
 
-    <section class="experience">
+    <section id="experience" class="experience">
         <div class="section-header">
             <h1>Experience</h1>
         </div>
@@ -100,7 +111,7 @@
         </div>
     </section>
     
-    <section class="education">
+    <section id="education" class="education">
         <div class="section-header">
             <h1>Education</h1>
         </div>
@@ -120,7 +131,7 @@
         </div>
     </section>
 
-    <section class="projects">
+    <section id="projects" class="projects">
         <div class="section-header">
             <h1>Projects</h1>
         </div>
@@ -173,7 +184,7 @@
         </div>
     </section>
 
-    <section class="skills">
+    <section id="skills" class="skills">
         <div class="section-header">
             <h1>Skills</h1>
         </div>
@@ -241,7 +252,7 @@
         </div>
     </section>
 
-    <section class="contact">
+    <section id="contact" class="contact">
         <div class="section-header">
             <h1>Contact</h1>
         </div>
@@ -299,6 +310,96 @@
             description.classList.toggle('open');
             arrow.classList.toggle('open');
         }
+
+        // Theme toggle
+        (function() {
+            const toggle = document.getElementById('theme-toggle');
+            const icon = document.getElementById('theme-icon');
+
+            function getPreferredTheme() {
+                const saved = localStorage.getItem('theme');
+                if (saved) return saved;
+                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            }
+
+            const sunSvg = '<svg class="theme-sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><line x1="12" y1="1" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.78" y2="4.22"/></svg>';
+            const moonSvg = '<svg class="theme-moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+                localStorage.setItem('theme', theme);
+                icon.innerHTML = theme === 'light' ? moonSvg : sunSvg;
+            }
+
+            toggle.addEventListener('click', () => {
+                const current = getPreferredTheme();
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            });
+
+            // Initialize on load
+            const theme = getPreferredTheme();
+            setTheme(theme);
+        })();
+
+        // Taskbar nav: smooth scroll to section on click
+        document.querySelectorAll('.taskbar-link[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const id = link.getAttribute('href').slice(1);
+                const el = document.getElementById(id);
+                if (el) {
+                    e.preventDefault();
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll spy - highlight taskbar link for section in view
+        (function() {
+            const sections = ['header', 'experience', 'education', 'projects', 'skills', 'contact'];
+            const links = sections.map(id => document.querySelector(`.taskbar-link[href="#${id}"]`));
+
+            function getSectionTop(el) {
+                return el.getBoundingClientRect().top + window.scrollY;
+            }
+
+            function updateActive() {
+                const viewportTop = window.scrollY + 1; // use top of viewport so small sections (e.g. Education) are detected
+                const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50;
+
+                let activeId = null;
+                if (atBottom) {
+                    activeId = sections[sections.length - 1];
+                } else {
+                    for (const id of sections) {
+                        const el = document.getElementById(id);
+                        if (!el) continue;
+                        const sectionTop = getSectionTop(el);
+                        const sectionBottom = sectionTop + el.offsetHeight;
+                        if (viewportTop >= sectionTop && viewportTop < sectionBottom) {
+                            activeId = id;
+                            break;
+                        }
+                        if (viewportTop < sectionTop) break;
+                        activeId = id;
+                    }
+                    if (!activeId) activeId = sections[0];
+                }
+
+                links.forEach(link => {
+                    if (link) {
+                        const isActive = link.getAttribute('href') === `#${activeId}`;
+                        link.classList.toggle('active', isActive);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActive);
+            updateActive();
+        })();
     </script>
 </body>
 </html>

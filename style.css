@@ -1,5 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+:root {
+    /* Dark theme (default) */
+    --bg-primary: #000000;
+    --bg-secondary: rgb(18, 18, 18);
+    --bg-tertiary: rgb(24, 24, 24);
+    --bg-card: rgb(18, 18, 18);
+    --bg-card-hover: rgb(24, 24, 24);
+    --bg-tag: rgb(30, 30, 30);
+    --bg-tag-hover: rgb(40, 40, 40);
+    --bg-image: rgb(28, 28, 28);
+    --bg-image-fallback: linear-gradient(135deg, rgb(30, 30, 30) 0%, rgb(20, 20, 20) 100%);
+    --text-primary: #ffffff;
+    --text-secondary: grey;
+    --text-tertiary: rgb(200, 200, 200);
+    --border-color: rgb(55, 55, 55);
+    --border-light: rgb(50, 50, 50);
+    --border-hover: rgb(80, 80, 80);
+    --icon-muted: grey;
+}
+
+[data-theme="light"] {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #eeeeee;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8f8f8;
+    --bg-tag: #e8e8e8;
+    --bg-tag-hover: #dddddd;
+    --bg-image: #e0e0e0;
+    --bg-image-fallback: linear-gradient(135deg, #e8e8e8 0%, #dddddd 100%);
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --text-tertiary: #333333;
+    --border-color: #cccccc;
+    --border-light: #dddddd;
+    --border-hover: #999999;
+    --icon-muted: #666666;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +51,7 @@
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -19,8 +59,81 @@ body {
     height: 100%;
     margin: 0;
     overflow-x: hidden;
-    background-color: black;
-    color: white;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding-bottom: 72px; /* Space for fixed taskbar */
+}
+
+/* Bottom taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+}
+
+.taskbar-link {
+    width: 36px;
+    height: 36px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background: transparent;
+    transition: opacity 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.taskbar-link:hover {
+    opacity: 0.7;
+}
+
+.taskbar-link.active {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.taskbar .theme-toggle {
+    margin-left: 8px;
+}
+
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    transition: opacity 0.2s ease;
+}
+
+.theme-toggle:hover {
+    opacity: 0.7;
+}
+
+.theme-toggle .theme-sun-icon,
+.theme-toggle .theme-moon-icon {
+    width: 15px;
+    height: 15px;
+    display: block;
 }
 
 .header {
@@ -35,11 +148,11 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    border: 3px solid rgb(55, 55, 55);
+    border: 3px solid var(--border-color);
 }
 
 .header div h1 {
-    color: white;
+    color: var(--text-primary);
     width: 500px;
     font-size: 50px;
     text-align: left;
@@ -47,7 +160,7 @@ body {
 
 .header div h3 {
     margin-top: 5px;
-    color: grey;
+    color: var(--text-secondary);
     text-align: left;
     font-size: 18px;
 }
@@ -57,9 +170,9 @@ body {
     padding: 3px 7px;
     margin: 3px;
     margin-top: 10px;
-    border: 1px solid darkgray;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    color: darkgrey;
+    color: var(--text-secondary);
     text-decoration: none;
     text-transform: capitalize;
     transition: 0.3s;
@@ -67,7 +180,7 @@ body {
 }
 
 .icon-link:hover {
-    background-color: rgb(24, 24, 24);
+    background-color: var(--bg-tertiary);
 }
 
 .section-header {
@@ -79,7 +192,7 @@ body {
     margin-top: 50px;
     padding-bottom: 8px;
     font-size: 80%;
-    border-bottom: 0.5px solid rgb(55, 55, 55);
+    border-bottom: 0.5px solid var(--border-color);
 }
 
 .content {
@@ -88,7 +201,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 25px;
-    color: grey;
+    color: var(--text-secondary);
     font-size: small;
     line-height: 25px;
 }
@@ -128,7 +241,7 @@ body {
 .module .group {
     font-size: 16px;
     font-weight: 500;
-    color: white;
+    color: var(--text-primary);
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -138,7 +251,7 @@ body {
 .module .title {
     font-size: 14px;
     font-weight: 400;
-    color: grey;
+    color: var(--text-secondary);
     margin: 3px 0 0 0;
     white-space: nowrap;
     overflow: hidden;
@@ -155,14 +268,14 @@ body {
 
 .module .time {
     font-size: 13px;
-    color: grey;
+    color: var(--text-secondary);
     margin: 0;
     white-space: nowrap;
 }
 
 .arrow {
     font-size: 20px;
-    color: grey;
+    color: var(--text-secondary);
     transition: transform 0.2s ease;
 }
 
@@ -176,7 +289,7 @@ body {
     max-height: 0;
     margin-top: 0;
     padding-left: 65px;
-    color: grey;
+    color: var(--text-secondary);
     font-size: 14px;
     line-height: 1.6;
     transition: opacity 0.2s ease, max-height 0.2s ease, margin-top 0.2s ease;
@@ -202,7 +315,7 @@ body {
 }
 
 .skill-card {
-    background-color: rgb(18, 18, 18);
+    background-color: var(--bg-card);
     border-radius: 12px;
     padding: 25px;
 }
@@ -215,14 +328,14 @@ body {
 }
 
 .skill-card-header i {
-    color: grey;
+    color: var(--icon-muted);
     font-size: 16px;
 }
 
 .skill-card-header h2 {
     font-size: 16px;
     font-weight: 600;
-    color: white;
+    color: var(--text-primary);
 }
 
 .skill-tags {
@@ -232,9 +345,9 @@ body {
 }
 
 .skill-tag {
-    background-color: rgb(30, 30, 30);
-    color: rgb(200, 200, 200);
-    border: 1px solid rgb(50, 50, 50);
+    background-color: var(--bg-tag);
+    color: var(--text-tertiary);
+    border: 1px solid var(--border-light);
     border-radius: 20px;
     padding: 4px 12px;
     font-size: 13px;
@@ -243,8 +356,8 @@ body {
 }
 
 .skill-tag:hover {
-    background-color: rgb(40, 40, 40);
-    border-color: rgb(80, 80, 80);
+    background-color: var(--bg-tag-hover);
+    border-color: var(--border-hover);
 }
 
 /* Projects Section */
@@ -261,7 +374,7 @@ body {
 }
 
 .project-card {
-    background-color: rgb(18, 18, 18);
+    background-color: var(--bg-card);
     border-radius: 16px;
     overflow: hidden;
     display: flex;
@@ -270,7 +383,7 @@ body {
 }
 
 .project-card:hover {
-    background-color: rgb(24, 24, 24);
+    background-color: var(--bg-card-hover);
 }
 
 .project-image {
@@ -280,7 +393,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(28, 28, 28);
+    background-color: var(--bg-image);
 }
 
 .project-image img {
@@ -291,12 +404,12 @@ body {
 
 /* Fallback gradient background when no image */
 .project-image--fitness {
-    background: linear-gradient(135deg, rgb(30, 30, 30) 0%, rgb(20, 20, 20) 100%);
+    background: var(--bg-image-fallback);
 }
 
 .project-icon {
     font-size: 48px;
-    color: rgb(80, 80, 80);
+    color: var(--icon-muted);
 }
 
 .project-body {
@@ -317,19 +430,19 @@ body {
 .project-name {
     font-size: 16px;
     font-weight: 600;
-    color: white;
+    color: var(--text-primary);
 }
 
 .project-date {
     font-size: 12px;
-    color: grey;
+    color: var(--text-secondary);
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .project-description {
     font-size: 13px;
-    color: grey;
+    color: var(--text-secondary);
     line-height: 1.6;
     flex: 1;
 }
@@ -341,9 +454,9 @@ body {
 }
 
 .project-tag {
-    background-color: rgb(30, 30, 30);
-    color: rgb(200, 200, 200);
-    border: 1px solid rgb(50, 50, 50);
+    background-color: var(--bg-tag);
+    color: var(--text-tertiary);
+    border: 1px solid var(--border-light);
     border-radius: 20px;
     padding: 4px 12px;
     font-size: 12px;
@@ -357,10 +470,10 @@ body {
     gap: 8px;
     margin-top: 4px;
     padding: 10px 16px;
-    background-color: rgb(30, 30, 30);
-    border: 1px solid rgb(55, 55, 55);
+    background-color: var(--bg-tag);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    color: white;
+    color: var(--text-primary);
     font-size: 13px;
     font-weight: 400;
     text-decoration: none;
@@ -368,8 +481,8 @@ body {
 }
 
 .project-btn:hover {
-    background-color: rgb(40, 40, 40);
-    border-color: rgb(80, 80, 80);
+    background-color: var(--bg-tag-hover);
+    border-color: var(--border-hover);
 }
 
 .project-btn i {
@@ -390,7 +503,7 @@ body {
 }
 
 .contact-card {
-    background-color: rgb(18, 18, 18);
+    background-color: var(--bg-card);
     border-radius: 12px;
     padding: 20px;
     text-decoration: none;
@@ -399,7 +512,7 @@ body {
 }
 
 .contact-card:hover {
-    background-color: rgb(30, 30, 30);
+    background-color: var(--bg-tag);
 }
 
 .contact-card-header {
@@ -410,19 +523,19 @@ body {
 }
 
 .contact-card-header i {
-    color: grey;
+    color: var(--icon-muted);
     font-size: 15px;
 }
 
 .contact-card-header h2 {
     font-size: 14px;
     font-weight: 600;
-    color: white;
+    color: var(--text-primary);
 }
 
 .contact-value {
     font-size: 12px;
-    color: grey;
+    color: var(--text-secondary);
     word-break: break-all;
 }
 
